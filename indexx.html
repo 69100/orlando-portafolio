@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portafolio profesional de Orlando Vladimir Mamani Sánchez, Ingeniero Comercial y Contador General.">
+  <title>Orlando Mamani | Portafolio profesional</title>
+  <style>
+    /* ---------- ESTILOS GENERALES ---------- */
+    :root {
+      --fondo: #f5f7fb;
+      --blanco: #ffffff;
+      --texto: #172033;
+      --suave: #667085;
+      --azul: #1746a2;
+      --azul-oscuro: #102e68;
+      --celeste: #eaf1ff;
+      --borde: #e5eaf2;
+      --sombra: 0 18px 50px rgba(20, 42, 85, .09);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 85px; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--texto);
+      background: var(--fondo);
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    .contenedor { width: min(1120px, 90%); margin: 0 auto; }
+    .seccion { padding: 88px 0; }
+    .etiqueta {
+      display: inline-block; color: var(--azul); background: var(--celeste);
+      border-radius: 30px; padding: 6px 13px; font-size: .78rem;
+      font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      margin-bottom: 13px;
+    }
+    .titulo-seccion { font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.2; margin-bottom: 14px; }
+    .intro-seccion { color: var(--suave); max-width: 680px; margin-bottom: 35px; }
+
+    /* ---------- BARRA DE NAVEGACIÓN ---------- */
+    header {
+      position: sticky; top: 0; z-index: 1000; background: rgba(255,255,255,.94);
+      backdrop-filter: blur(12px); border-bottom: 1px solid var(--borde);
+    }
+    .barra { min-height: 76px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.12rem; font-weight: 800; color: var(--azul-oscuro); }
+    .logo span { color: var(--azul); }
+    .navegacion { display: flex; align-items: center; gap: 25px; }
+    .navegacion a { color: #475467; font-size: .92rem; font-weight: 600; transition: color .2s; }
+    .navegacion a:hover { color: var(--azul); }
+    .boton-menu {
+      display: none; border: 0; background: var(--celeste); color: var(--azul-oscuro);
+      border-radius: 10px; width: 44px; height: 44px; font-size: 1.5rem; cursor: pointer;
+    }
+
+    /* ---------- PORTADA ---------- */
+    .portada {
+      color: white; background:
+        radial-gradient(circle at 85% 20%, rgba(91,145,255,.35), transparent 28%),
+        linear-gradient(125deg, #102b61, #1746a2 65%, #2364c5);
+      padding: 86px 0 92px; overflow: hidden;
+    }
+    .portada-contenido { display: grid; grid-template-columns: 1.35fr .65fr; gap: 55px; align-items: center; }
+    .portada .saludo { color: #c8dcff; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: .82rem; }
+    .portada h1 { font-size: clamp(2.45rem, 6vw, 4.5rem); line-height: 1.07; margin: 15px 0 18px; }
+    .portada h1 span { color: #b9d2ff; }
+    .portada .subtitulo { max-width: 650px; color: #e3edff; font-size: 1.12rem; }
+    .acciones { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 30px; }
+    .boton {
+      display: inline-flex; justify-content: center; align-items: center; gap: 8px;
+      padding: 12px 20px; border-radius: 10px; font-weight: 700; transition: transform .2s, background .2s;
+    }
+    .boton:hover { transform: translateY(-2px); }
+    .boton-claro { color: var(--azul-oscuro); background: white; }
+    .boton-borde { color: white; border: 1px solid rgba(255,255,255,.55); }
+    .foto-marco {
+      width: min(270px, 100%); aspect-ratio: 1; margin: auto; padding: 10px;
+      border: 1px solid rgba(255,255,255,.45); border-radius: 30px;
+      background: rgba(255,255,255,.13); transform: rotate(3deg);
+      box-shadow: 0 25px 55px rgba(0,0,0,.2);
+    }
+    .foto-perfil { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; border-radius: 22px; transform: rotate(-3deg); background: white; }
+
+    /* ---------- SOBRE MÍ Y TARJETAS ---------- */
+    .sobre-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 45px; align-items: start; }
+    .sobre-texto p { color: var(--suave); margin: 0 0 15px; }
+    .dato-panel { background: white; border: 1px solid var(--borde); border-radius: 18px; padding: 25px; box-shadow: var(--sombra); }
+    .dato { padding: 13px 0; border-bottom: 1px solid var(--borde); }
+    .dato:last-child { border-bottom: 0; }
+    .dato strong { display: block; font-size: .83rem; color: var(--suave); margin-bottom: 3px; }
+    .dato span { font-weight: 700; overflow-wrap: anywhere; }
+
+    /* ---------- EXPERIENCIA Y FORMACIÓN ---------- */
+    .fondo-blanco { background: white; }
+    .linea-tiempo { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .tarjeta {
+      background: white; border: 1px solid var(--borde); border-radius: 16px;
+      padding: 25px; box-shadow: 0 8px 25px rgba(20,42,85,.045);
+    }
+    .tarjeta h3 { font-size: 1.12rem; margin: 8px 0 6px; }
+    .tarjeta p { color: var(--suave); }
+    .tarjeta .fecha { color: var(--azul); font-weight: 700; font-size: .85rem; }
+    .icono {
+      width: 42px; height: 42px; display: grid; place-items: center;
+      background: var(--celeste); color: var(--azul); border-radius: 12px; font-size: 1.2rem;
+    }
+
+    /* ---------- HABILIDADES ---------- */
+    .habilidades { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    .habilidad {
+      background: white; border: 1px solid var(--borde); border-radius: 13px;
+      padding: 17px; font-weight: 700; display: flex; gap: 11px; align-items: center;
+    }
+    .check { color: var(--azul); font-weight: 900; }
+
+    /* ---------- ÁREAS Y CURSOS ---------- */
+    .servicios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .servicio { padding: 23px; border-radius: 16px; background: white; border: 1px solid var(--borde); }
+    .servicio h3 { margin: 12px 0 6px; }
+    .servicio p { color: var(--suave); font-size: .94rem; }
+    .cursos { columns: 2; column-gap: 40px; padding-left: 20px; color: var(--suave); }
+    .cursos li { break-inside: avoid; margin: 0 0 9px; }
+
+    /* ---------- CONTACTO ---------- */
+    .contacto-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 35px; align-items: start; }
+    .contacto-info p { color: var(--suave); margin-bottom: 16px; }
+    .contacto-info a { color: var(--azul); font-weight: 700; overflow-wrap: anywhere; }
+    form { background: white; border: 1px solid var(--borde); border-radius: 18px; padding: 27px; box-shadow: var(--sombra); }
+    .campo { margin-bottom: 17px; }
+    label { display: block; font-weight: 700; font-size: .9rem; margin-bottom: 7px; }
+    input, textarea {
+      width: 100%; border: 1px solid #d6dce7; border-radius: 9px; padding: 12px 13px;
+      background: #fbfcff; color: var(--texto); outline: none; transition: border .2s, box-shadow .2s;
+    }
+    input:focus, textarea:focus { border-color: var(--azul); box-shadow: 0 0 0 3px rgba(23,70,162,.1); }
+    textarea { min-height: 135px; resize: vertical; }
+    .boton-enviar { border: 0; cursor: pointer; color: white; background: var(--azul); width: 100%; }
+    .boton-enviar:disabled { opacity: .65; cursor: wait; }
+    .estado { margin-top: 13px; font-weight: 700; font-size: .93rem; }
+    .estado.exito { color: #087443; }
+    .estado.error { color: #b42318; }
+    footer { padding: 25px 0; text-align: center; color: var(--suave); font-size: .88rem; border-top: 1px solid var(--borde); background: white; }
+
+    /* ---------- ANIMACIONES AL DESPLAZARSE ---------- */
+    .revelar { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+    .revelar.visible { opacity: 1; transform: translateY(0); }
+
+    /* ---------- AJUSTES PARA CELULARES Y TABLETS ---------- */
+    @media (max-width: 850px) {
+      .navegacion { gap: 14px; }
+      .portada-contenido { gap: 25px; }
+      .habilidades, .servicios-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 680px) {
+      .seccion { padding: 65px 0; }
+      .barra { min-height: 68px; }
+      .boton-menu { display: block; }
+      .navegacion {
+        display: none; position: absolute; top: 68px; left: 0; right: 0;
+        background: white; padding: 15px 5% 22px; border-bottom: 1px solid var(--borde);
+        box-shadow: 0 12px 18px rgba(0,0,0,.07); flex-direction: column; align-items: stretch; gap: 0;
+      }
+      .navegacion.abierto { display: flex; }
+      .navegacion a { padding: 11px 0; }
+      .portada { padding: 65px 0; }
+      .portada-contenido, .sobre-grid, .contacto-grid, .linea-tiempo { grid-template-columns: 1fr; }
+      .portada-contenido { text-align: center; }
+      .portada .subtitulo { margin: auto; }
+      .acciones { justify-content: center; }
+      .foto-marco { width: 210px; grid-row: 1; }
+      .habilidades, .servicios-grid { grid-template-columns: 1fr; }
+      .cursos { columns: 1; }
+      form { padding: 21px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+      .revelar { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- MENÚ PRINCIPAL -->
+  <header>
+    <div class="contenedor barra">
+      <a class="logo" href="#inicio">Orlando<span>.</span></a>
+      <button class="boton-menu" id="botonMenu" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <nav class="navegacion" id="navegacion">
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#experiencia">Experiencia y formación</a>
+        <a href="#habilidades">Habilidades</a>
+        <a href="#areas">Áreas de apoyo</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- INICIO: FOTO, NOMBRE Y PRESENTACIÓN -->
+    <section class="portada" id="inicio">
+      <div class="contenedor portada-contenido">
+        <div class="revelar">
+          <p class="saludo">Portafolio profesional</p>
+          <h1>Orlando Vladimir<br><span>Mamani Sánchez</span></h1>
+          <p class="subtitulo">Ingeniero Comercial · Contador General</p>
+          <p class="subtitulo" style="margin-top:10px">Con conocimientos en contabilidad, administración, marketing y gestión financiera.</p>
+          <div class="acciones">
+            <a class="boton boton-claro" href="#contacto">Contáctame <span>→</span></a>
+            <a class="boton boton-borde" href="#experiencia">Conocer mi trayectoria</a>
+          </div>
+        </div>
+        <div class="foto-marco revelar">
+          <!-- Fotografía extraída de la hoja de vida adjunta -->
+          <img class="foto-perfil" src="data:image/jpeg;base64,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eD9aapBcZPfPNZYvpAOET9aUX75/1afkaamg5Ga4ZmfhiOeaWR8LsLEk1mf2nL2SP8j/AI1C+o3CktsiP4H/ABpOaDkZq+NF2w+HM9TpWfzuJ6Kx9W1m41gWIuI4k+x2wto/LBGVDs+TknnLn9KKwbuzZFJOBn1p1MXpTs00Jik0A00nml4piHZozTM0ZoAdmkzzSZooAM0maDRQFiSBd86L6muviIVBt7CuTtflfeRwK3oZj5ec0gLUzLNC8Z7jFclIuyQp6HFbzTHdkGse/Ui4L4wG5oAr5pc03NApjJA1KDUeaXPvQKxJmjNMzRmgCUHikzg01TzTjQAvfilOcU3NLnigCGaPy2HowyKKlujkRf7lFQUREYjVvWm1L1th7Goc8VQhc0ZpuaXNILC5ozTc0UBYdRmkzSZoCwpOaKSlHJAoGadtEDZ4PUnNPglIVo26imLIFQD0FQ+bmZiKBE0cpMuzORmjUFDwqw6rUUTgMxxzUjuHjKnuKAMyilPBxSUDHUUmaM0xDs0ZpuaXd7UXCw4HmnBveo93tQGouFiSlzUe6lU5YfWgCS64MY9FopLo5kH0oqRjA37vFR0UUAFFFFABRRRQAUUUUAFOThs02igCdpeOO9IrAD61DRQBLvIORTxNmq9FADn+8cU2iigAooooAKKKKACiiigAzT0PzZplFAD5Dls0UyigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/9k=" alt="Fotografía de Orlando Vladimir Mamani Sánchez">
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section class="seccion" id="sobre-mi">
+      <div class="contenedor sobre-grid">
+        <div class="sobre-texto revelar">
+          <span class="etiqueta">Perfil profesional</span>
+          <h2 class="titulo-seccion">Sobre mí</h2>
+          <p>Soy Ingeniero Comercial y Contador General, con formación en la Universidad Tecnológica Boliviana y la Universidad Católica Boliviana. Cuento con conocimientos técnicos en contabilidad, administración y marketing.</p>
+          <p>Poseo conocimientos de la Ley N.º 1178 (SAFCO), normativa tributaria y Ley N.º 393 de Servicios Financieros. También cuento con manejo avanzado de paquetes Microsoft Office, orientado a optimizar procesos y desarrollar tareas de manera eficiente.</p>
+          <p>Me caracterizo por ser una persona proactiva, dinámica y sociable, con capacidad de adaptación y desempeño en diferentes entornos laborales.</p>
+        </div>
+        <aside class="dato-panel revelar">
+          <div class="dato"><strong>Profesión</strong><span>Ingeniero Comercial</span></div>
+          <div class="dato"><strong>Formación complementaria</strong><span>Contador General</span></div>
+          <div class="dato"><strong>Ubicación</strong><span>Av. Munaypata – Tiahuanacu</span></div>
+          <div class="dato"><strong>Correo electrónico</strong><span>mamaniorlando365@gmail.com</span></div>
+          <div class="dato"><strong>Celular</strong><span>76789753 · 77740998</span></div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- EXPERIENCIA Y FORMACIÓN -->
+    <section class="seccion fondo-blanco" id="experiencia">
+      <div class="contenedor">
+        <span class="etiqueta">Trayectoria</span>
+        <h2 class="titulo-seccion">Experiencia y formación</h2>
+        <p class="intro-seccion">Formación académica y experiencia de pasantía registradas en mi hoja de vida.</p>
+        <div class="linea-tiempo">
+          <article class="tarjeta revelar">
+            <div class="icono">🎓</div>
+            <p class="fecha">Formación académica</p>
+            <h3>Ingeniero Comercial</h3>
+            <p>Universidad Tecnológica Boliviana (UTB).</p>
+          </article>
+          <article class="tarjeta revelar">
+            <div class="icono">📘</div>
+            <p class="fecha">Formación académica</p>
+            <h3>Contador General</h3>
+            <p>Universidad Católica Boliviana (UCB).</p>
+          </article>
+          <article class="tarjeta revelar">
+            <div class="icono">🏢</div>
+            <p class="fecha">6 meses</p>
+            <h3>Unidad de Auditoría Interna (UAI) – E.P.T.A.M.</h3>
+            <p>Certificado de pasantías, con una duración de seis meses.</p>
+          </article>
+          <article class="tarjeta revelar">
+            <div class="icono">📚</div>
+            <p class="fecha">Formación previa</p>
+            <h3>Bachiller en Humanidades</h3>
+            <p>Además, realizó el Servicio Militar en el Regimiento de Caballería Mecanizada 5 “General Lanza”.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- HABILIDADES: SOLO CONOCIMIENTOS QUE CONSTAN EN EL CV -->
+    <section class="seccion" id="habilidades">
+      <div class="contenedor">
+        <span class="etiqueta">Conocimientos</span>
+        <h2 class="titulo-seccion">Habilidades</h2>
+        <p class="intro-seccion">Áreas de conocimiento y herramientas mencionadas en mi hoja de vida.</p>
+        <div class="habilidades">
+          <div class="habilidad revelar"><span class="check">✓</span> Contabilidad</div>
+          <div class="habilidad revelar"><span class="check">✓</span> Administración</div>
+          <div class="habilidad revelar"><span class="check">✓</span> Marketing</div>
+          <div class="habilidad revelar"><span class="check">✓</span> Área financiera</div>
+          <div class="habilidad revelar"><span class="check">✓</span> Microsoft Office avanzado</div>
+          <div class="habilidad revelar"><span class="check">✓</span> Normativa tributaria</div>
+          <div class="habilidad revelar"><span class="check">✓</span> Ley N.º 1178 (SAFCO)</div>
+          <div class="habilidad revelar"><span class="check">✓</span> Ley N.º 393</div>
+          <div class="habilidad revelar"><span class="check">✓</span> Gestión empresarial</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ÁREAS DE APOYO Y CURSOS: NO SE PRESENTAN COMO EMPLEOS O SERVICIOS CERTIFICADOS -->
+    <section class="seccion fondo-blanco" id="areas">
+      <div class="contenedor">
+        <span class="etiqueta">Áreas de conocimiento</span>
+        <h2 class="titulo-seccion">Áreas de apoyo y formación complementaria</h2>
+        <p class="intro-seccion">Campos relacionados con mi formación y los cursos que figuran en mi hoja de vida.</p>
+        <div class="servicios-grid">
+          <article class="servicio revelar"><div class="icono">📊</div><h3>Contabilidad y finanzas</h3><p>Ciclo contable, elaboración de estados financieros, flujo de caja, ahorros e inversión.</p></article>
+          <article class="servicio revelar"><div class="icono">🗂️</div><h3>Administración y gestión</h3><p>Gestión estratégica empresarial, planificación estratégica y administración de ingresos y gastos.</p></article>
+          <article class="servicio revelar"><div class="icono">📣</div><h3>Marketing y ventas</h3><p>Marketing digital, ventas especializadas, negociación, cierre de ventas y servicio al cliente.</p></article>
+        </div>
+        <h3 style="margin:35px 0 15px">Otros cursos y talleres</h3>
+        <ul class="cursos">
+          <li>Gestión estratégica del personal PYMES y Marketing Digital.</li>
+          <li>Contexto internacional de la regulación financiera en un entorno de innovación.</li>
+          <li>Planificación estratégica Hoshin Knari.</li>
+          <li>Cómo gerenciar la fuerza de ventas y Time Management.</li>
+          <li>Técnicas de negociación y técnicas de cierre de ventas.</li>
+          <li>Gestión de servicio al cliente y comunidad andina.</li>
+          <li>Redes sociales en el mundo del social media – Gerencia 5.0.</li>
+          <li>Oralidad y escritura en Aymara.</li>
+          <li>Promotor financiero en emprendimientos y taller de educación financiera.</li>
+          <li>Definición y logro de metas; conocimiento de la salud financiera.</li>
+          <li>Ley N.º 777 del Sistema de Planificación Integral del Estado y Ley N.º 1178.</li>
+          <li>Asesor de crédito, ciclo contable empresarial y elaboración de estados financieros.</li>
+          <li>Medidas de seguridad de la nueva familia de billetes en Bolivia, Serie B.</li>
+          <li>Tratamiento contable y tributario de la diferencia de cambio al nuevo dólar flexible.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="seccion" id="contacto">
+      <div class="contenedor">
+        <span class="etiqueta">Hablemos</span>
+        <h2 class="titulo-seccion">Contacto</h2>
+        <p class="intro-seccion">Puedes comunicarte conmigo mediante los datos de contacto o enviarme un mensaje desde este formulario.</p>
+        <div class="contacto-grid">
+          <div class="contacto-info revelar">
+            <p><strong>Correo electrónico</strong><br><a href="mailto:mamaniorlando365@gmail.com">mamaniorlando365@gmail.com</a></p>
+            <p><strong>Celulares</strong><br><a href="tel:+59176789753">76789753</a> · <a href="tel:+59177740998">77740998</a></p>
+            <p><strong>Ubicación</strong><br>Av. Munaypata – Tiahuanacu</p>
+          </div>
+          <form id="formularioContacto" class="revelar">
+            <div class="campo">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre" required minlength="2" maxlength="100">
+            </div>
+            <div class="campo">
+              <label for="correo">Correo electrónico</label>
+              <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required maxlength="150">
+            </div>
+            <div class="campo">
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje..." required minlength="5" maxlength="2000"></textarea>
+            </div>
+            <button type="submit" class="boton boton-enviar" id="botonEnviar">Enviar mensaje</button>
+            <p id="estadoFormulario" class="estado" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="contenedor">© <span id="anio"></span> Orlando Vladimir Mamani Sánchez. Portafolio profesional.</div>
+  </footer>
+
+  <script>
+    // ---------- MENÚ RESPONSIVE: ABRIR Y CERRAR EN CELULARES ----------
+    const botonMenu = document.getElementById('botonMenu');
+    const navegacion = document.getElementById('navegacion');
+
+    botonMenu.addEventListener('click', () => {
+      const estaAbierto = navegacion.classList.toggle('abierto');
+      botonMenu.setAttribute('aria-expanded', estaAbierto);
+      botonMenu.setAttribute('aria-label', estaAbierto ? 'Cerrar menú' : 'Abrir menú');
+      botonMenu.textContent = estaAbierto ? '×' : '☰';
+    });
+
+    // Al seleccionar una sección, el menú móvil se cierra automáticamente.
+    navegacion.querySelectorAll('a').forEach(enlace => {
+      enlace.addEventListener('click', () => {
+        navegacion.classList.remove('abierto');
+        botonMenu.setAttribute('aria-expanded', 'false');
+        botonMenu.setAttribute('aria-label', 'Abrir menú');
+        botonMenu.textContent = '☰';
+      });
+    });
+
+    // ---------- ANIMACIONES SUAVES AL BAJAR POR LA PÁGINA ----------
+    const elementos = document.querySelectorAll('.revelar');
+    if ('IntersectionObserver' in window) {
+      const observador = new IntersectionObserver((entradas, observer) => {
+        entradas.forEach(entrada => {
+          if (entrada.isIntersecting) {
+            entrada.target.classList.add('visible');
+            observer.unobserve(entrada.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      elementos.forEach(elemento => observador.observe(elemento));
+    } else {
+      // Alternativa para navegadores antiguos: mostrar todo el contenido.
+      elementos.forEach(elemento => elemento.classList.add('visible'));
+    }
+
+    // Mostrar automáticamente el año actual en el pie de página.
+    document.getElementById('anio').textContent = new Date().getFullYear();
+
+    // ---------- FORMULARIO: VALIDACIÓN Y ENVÍO A GOOGLE APPS SCRIPT ----------
+    const URL_APPS_SCRIPT = 'PEGA_AQUI_LA_URL_DE_TU_APLICACION_WEB';
+    const formulario = document.getElementById('formularioContacto');
+    const botonEnviar = document.getElementById('botonEnviar');
+    const estado = document.getElementById('estadoFormulario');
+
+    formulario.addEventListener('submit', async (evento) => {
+      evento.preventDefault();
+      estado.textContent = '';
+      estado.className = 'estado';
+
+      // Validación nativa del navegador (campos requeridos, correo y longitudes).
+      if (!formulario.checkValidity()) {
+        formulario.reportValidity();
+        return;
+      }
+
+      // Evita enviar si todavía no se configuró la URL de Google Apps Script.
+      if (URL_APPS_SCRIPT.includes('PEGA_AQUI')) {
+        estado.textContent = 'Falta configurar la URL de Google Apps Script en el código.';
+        estado.classList.add('error');
+        return;
+      }
+
+      botonEnviar.disabled = true;
+      botonEnviar.textContent = 'Enviando...';
+
+      try {
+        // URLSearchParams envía datos como formulario y evita una solicitud
+        // CORS de preflight. "no-cors" no permite leer la respuesta del servidor.
+        const datos = new URLSearchParams();
+        datos.append('nombre', document.getElementById('nombre').value.trim());
+        datos.append('correo', document.getElementById('correo').value.trim());
+        datos.append('mensaje', document.getElementById('mensaje').value.trim());
+
+        await fetch(URL_APPS_SCRIPT, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: datos
+        });
+
+        // La respuesta opaca no permite comprobar el resultado interno del servidor.
+        // Apps Script registra el envío; si la petición no tuvo error de red, se informa.
+        estado.textContent = '¡Mensaje enviado!';
+        estado.classList.add('exito');
+        formulario.reset();
+      } catch (error) {
+        estado.textContent = 'No se pudo enviar el mensaje. Revisa tu conexión e inténtalo nuevamente.';
+        estado.classList.add('error');
+      } finally {
+        botonEnviar.disabled = false;
+        botonEnviar.textContent = 'Enviar mensaje';
+      }
+    });
+  </script>
+</body>
+</html>
